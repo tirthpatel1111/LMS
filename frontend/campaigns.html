@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaigns — Lead Management System</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><div class="sidebar-logo">📊</div><div class="sidebar-brand">Lead Manager<small>Campaign System</small></div></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Main</div><a href="/dashboard" class="nav-item"><span class="nav-icon">🏠</span><span>Dashboard</span></a></div>
+                <div class="nav-section"><div class="nav-section-title">Management</div><a href="/leads" class="nav-item"><span class="nav-icon">👥</span><span>Leads</span><span class="nav-badge" id="leadCount">0</span></a><a href="/website-leads" class="nav-item"><span class="nav-icon">🌐</span><span>Website Leads</span></a><a href="/campaigns" class="nav-item active"><span class="nav-icon">📧</span><span>Campaigns</span></a></div>
+
+                <div class="nav-section hidden" id="adminSection"><div class="nav-section-title">Admin</div><a href="/admin" class="nav-item"><span class="nav-icon">⚙️</span><span>Admin Panel</span></a></div>
+            </nav>
+            <div class="sidebar-footer"><div class="user-card"><div class="user-avatar" id="userAvatar">A</div><div class="user-info"><div class="user-name" id="sidebarUserName">Loading...</div><div class="user-role" id="sidebarUserRole">-</div></div></div><button class="btn-logout" id="logoutBtn"><span>🚪</span><span>Sign Out</span></button></div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="top-bar-left"><button class="menu-toggle" id="menuToggle">☰</button><h1 class="page-title">Campaigns</h1></div>
+                <div class="top-bar-right"><span class="greeting-text">Welcome, <strong id="greetingName">User</strong></span></div>
+            </header>
+
+            <div class="content-area fade-in">
+                <!-- Stats -->
+                <div class="stats-grid" style="margin-bottom:24px;">
+                    <div class="stat-card"><div class="stat-card-header"><span class="stat-card-label">Total Campaigns</span><div class="stat-card-icon">📨</div></div><div class="stat-card-value" id="campTotal">0</div></div>
+                    <div class="stat-card"><div class="stat-card-header"><span class="stat-card-label">Sent Successfully</span><div class="stat-card-icon">✅</div></div><div class="stat-card-value" id="campSent">0</div></div>
+                    <div class="stat-card"><div class="stat-card-header"><span class="stat-card-label">Email Campaigns</span><div class="stat-card-icon">📧</div></div><div class="stat-card-value" id="campEmail">0</div></div>
+                    <div class="stat-card"><div class="stat-card-header"><span class="stat-card-label">WhatsApp Messages</span><div class="stat-card-icon">💬</div></div><div class="stat-card-value" id="campWhatsApp">0</div></div>
+                </div>
+
+                <!-- Filter bar -->
+                <div class="action-bar">
+                    <div class="action-bar-left">
+                        <select id="typeFilter" class="filter-select">
+                            <option value="">All Types</option>
+                            <option value="email">Email</option>
+                            <option value="whatsapp">WhatsApp</option>
+                        </select>
+                    </div>
+                    <div class="action-bar-right">
+                        <span style="font-size:0.8125rem;color:#6B7280;">
+                            💡 <strong>Contacted</strong> leads → <strong>Update Outcome</strong> (mark as Approved or Lost) &nbsp;|&nbsp;
+                            <strong>Approved</strong> leads → <strong>👁️ View Meeting</strong> (view, edit, or cancel the scheduled meeting)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Campaigns table -->
+                <div class="card mt-4">
+                    <div class="card-body" style="padding:0;">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Lead</th>
+                                        <th>Type</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Campaign Status</th>
+                                        <th>Lead Status</th>
+                                        <th>Sent At</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="campaignsTableBody">
+                                    <tr><td colspan="8" class="text-center" style="padding:40px;color:#9CA3AF;">Loading campaigns...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/campaigns.js"></script>
+</body>
+</html>

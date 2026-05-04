@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leads — Lead Management System</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">📊</div>
+                <div class="sidebar-brand">Lead Manager<small>Campaign System</small></div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Main</div>
+                    <a href="/dashboard" class="nav-item" data-page="dashboard"><span class="nav-icon">🏠</span><span>Dashboard</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Management</div>
+                    <a href="/leads" class="nav-item active" data-page="leads"><span class="nav-icon">👥</span><span>Leads</span><span class="nav-badge" id="leadCount">0</span></a>
+                    <a href="/website-leads" class="nav-item" data-page="website-leads"><span class="nav-icon">🌐</span><span>Website Leads</span></a>
+                    <a href="/campaigns" class="nav-item" data-page="campaigns"><span class="nav-icon">📧</span><span>Campaigns</span></a>
+                </div>
+
+                <div class="nav-section hidden" id="adminSection">
+                    <div class="nav-section-title">Admin</div>
+                    <a href="/admin" class="nav-item" data-page="admin"><span class="nav-icon">⚙️</span><span>Admin Panel</span></a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-card"><div class="user-avatar" id="userAvatar">A</div><div class="user-info"><div class="user-name" id="sidebarUserName">Loading...</div><div class="user-role" id="sidebarUserRole">—</div></div></div>
+                <button class="btn-logout" id="logoutBtn"><span>🚪</span><span>Sign Out</span></button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+                    <h1 class="page-title">Lead Management</h1>
+                </div>
+                <div class="top-bar-right">
+                    <span class="greeting-text">Welcome, <strong id="greetingName">User</strong></span>
+                </div>
+            </header>
+
+            <div class="content-area fade-in">
+                <!-- Action bar -->
+                <div class="action-bar">
+                    <div class="action-bar-left">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="searchInput" placeholder="Search leads..." class="search-input">
+                        </div>
+                        <select id="statusFilter" class="filter-select">
+                            <option value="">All Status</option>
+                            <option value="new">New</option>
+                            <option value="contacted">Contacted</option>
+                            <option value="won">Approved</option>
+                            <option value="lost">Lost</option>
+                        </select>
+                        <select id="sourceFilter" class="filter-select">
+                            <option value="">All Sources</option>
+                            <option value="manual">Manual</option>
+                            <option value="Website">Website</option>
+                            <option value="excel">Excel</option>
+                            <option value="ocr">OCR</option>
+                        </select>
+                    </div>
+                    <div class="action-bar-right" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px;">
+                        <button class="btn btn-danger btn-sm" id="btnDeleteAllLeads">🗑️ Delete All</button>
+                        <button class="btn btn-primary btn-sm hidden" id="btnBulkCampaign">🚀 Run Bulk Campaign</button>
+                        <button class="btn btn-secondary btn-sm" id="btnScanCard">📷 Scan Image</button>
+                        <button class="btn btn-secondary btn-sm" id="btnUploadExcel">📄 Upload Excel</button>
+                        <button class="btn btn-primary btn-sm" id="btnAddLead">➕ Add Lead</button>
+                    </div>
+                </div>
+
+                <!-- Hidden file inputs -->
+                <input type="file" id="excelFileInput" accept=".xlsx,.xls" style="display:none">
+                <input type="file" id="cardFileInput" accept=".jpg,.jpeg,.png,.bmp,.tiff,.tif" style="display:none">
+
+                <!-- Leads table -->
+                <div class="card mt-4">
+                    <div class="card-body" style="padding: 0;">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="selectAllLeads"></th>
+                                        <th>Company</th>
+                                        <th>Contact</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Source</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leadsTableBody">
+                                    <tr><td colspan="8" class="text-center" style="padding:40px;color:#9CA3AF;">Loading leads...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/leads.js"></script>
+</body>
+</html>
